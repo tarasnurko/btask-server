@@ -2,6 +2,9 @@ import {
   TypeOrmModuleAsyncOptions,
   TypeOrmModuleOptions,
 } from '@nestjs/typeorm';
+import { UserEntity } from 'src/core/user/user.entity';
+
+const Entities = [UserEntity];
 
 export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
   useFactory: async (): Promise<TypeOrmModuleOptions> => {
@@ -13,8 +16,8 @@ export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      ssl: { rejectUnauthorized: false },
-      entities: [],
+      ssl: process.env.DATABASE_URL ? true : false,
+      entities: Entities,
       synchronize: true,
     };
   },

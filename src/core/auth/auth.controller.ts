@@ -42,11 +42,4 @@ export class AuthController {
     res.cookie('jwt', null, { httpOnly: true });
     return null;
   }
-
-  @Get('get')
-  @UseGuards(JwtAuthGuard)
-  async get(@Req() req: Request) {
-    console.log(req.user);
-    return { a: 'dfdfdf' };
-  }
 }

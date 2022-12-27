@@ -1,4 +1,11 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { LeadEntity } from '@/core/lead/lead.entity';
 
 @Entity('user')
 export class UserEntity extends BaseEntity {
@@ -10,4 +17,10 @@ export class UserEntity extends BaseEntity {
 
   @Column({ select: false })
   password: string;
+
+  @OneToMany(() => LeadEntity, (lead) => lead.user, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  leads: LeadEntity[];
 }

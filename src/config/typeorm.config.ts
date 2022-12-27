@@ -2,9 +2,11 @@ import {
   TypeOrmModuleAsyncOptions,
   TypeOrmModuleOptions,
 } from '@nestjs/typeorm';
-import { UserEntity } from 'src/core/user/user.entity';
 
-const Entities = [UserEntity];
+import { UserEntity } from '@/core/user/user.entity';
+import { LeadEntity } from '@/core/lead/lead.entity';
+
+const Entities = [UserEntity, LeadEntity];
 
 export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
   useFactory: async (): Promise<TypeOrmModuleOptions> => {

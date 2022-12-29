@@ -3,6 +3,8 @@ import {
   IsNotEmpty,
   IsNumber,
   IsString,
+  Max,
+  Min,
   ValidateIf,
 } from 'class-validator';
 import { LeadSource } from '../enums';
@@ -23,6 +25,12 @@ export class CreateLeadDto {
   @ValidateIf((dto) => dto.maxBudget)
   @IsNumber({}, { message: 'Provide correct max budget (number)' })
   maxBudget: number;
+
+  @IsNotEmpty()
+  @IsNumber()
+  @Min(1)
+  @Max(5)
+  nextTask: number;
 
   @IsNotEmpty()
   @IsString()

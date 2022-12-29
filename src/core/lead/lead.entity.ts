@@ -4,11 +4,13 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
 import { UserEntity } from '@/core/user/user.entity';
 import { LeadSource } from './enums';
+import { TaskEntity } from '../task/task.entity';
 
 @Entity('lead')
 export class LeadEntity extends BaseEntity {
@@ -33,7 +35,10 @@ export class LeadEntity extends BaseEntity {
   @Column()
   userId: number;
 
-  @ManyToOne(() => UserEntity, (user) => user.leads)
+  @OneToMany(() => TaskEntity, (task) => task.lead)
+  tasks: TaskEntity[];
+
+  @ManyToOne(() => UserEntity, (user) => user.leads, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'userId' })
   user: UserEntity;
 }

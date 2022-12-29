@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { LeadEntity } from '@/core/lead/lead.entity';
+import { TaskEntity } from '../task/task.entity';
 
 @Entity('user')
 export class UserEntity extends BaseEntity {
@@ -23,4 +24,10 @@ export class UserEntity extends BaseEntity {
     onUpdate: 'CASCADE',
   })
   leads: LeadEntity[];
+
+  @OneToMany(() => TaskEntity, (task) => task.user, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  tasks: TaskEntity[];
 }

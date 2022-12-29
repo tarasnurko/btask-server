@@ -10,7 +10,9 @@ import {
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards';
 import { User } from '../user/decorators';
+import { Lead } from './decorators';
 import { CreateLeadDto } from './dto';
+import { LeadGuard } from './guards';
 import { LeadService } from './lead.service';
 
 @Controller('leads')
@@ -31,11 +33,9 @@ export class LeadController {
     return await this.leadService.createLead({ userId, createLeadDto });
   }
 
-  @Delete(':id')
-  async deleteLead(
-    @User('id') userId: number,
-    @Param('id', ParseIntPipe) leadId: number,
-  ): Promise<void> {
-    return await this.leadService.deleteLead({ userId, leadId });
+  @Delete(':leadId')
+  @UseGuards(LeadGuard)
+  async deleteLead(@Lead('id') leadId: number) {
+    return await this.leadService.deleteLead(leadId);
   }
 }

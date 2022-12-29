@@ -5,8 +5,9 @@ import {
 
 import { UserEntity } from '@/core/user/user.entity';
 import { LeadEntity } from '@/core/lead/lead.entity';
+import { TaskEntity } from '@/core/task/task.entity';
 
-const Entities = [UserEntity, LeadEntity];
+const Entities = [UserEntity, LeadEntity, TaskEntity];
 
 export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
   useFactory: async (): Promise<TypeOrmModuleOptions> => {

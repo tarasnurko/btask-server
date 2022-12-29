@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 
 import { InjectRepository } from '@nestjs/typeorm';
+import { TaskRepository } from '../task/task.repository';
 import { CreateLeadDto } from './dto';
 
 import { LeadEntity } from './lead.entity';
@@ -15,6 +16,8 @@ export class LeadService {
   constructor(
     @InjectRepository(LeadRepository)
     private readonly leadRepository: LeadRepository,
+    @InjectRepository(TaskRepository)
+    private readonly taskRepository: TaskRepository,
   ) {}
 
   async getAllLeads(userId: number): Promise<LeadEntity[]> {
@@ -29,38 +32,45 @@ export class LeadService {
   }: {
     userId: number;
     createLeadDto: CreateLeadDto;
-  }): Promise<LeadEntity> {
-    const { minBudget, maxBudget } = createLeadDto;
+  }) {
+    const { name, source, nextTask, minBudget, maxBudget, contact } =
+      createLeadDto;
+
+    const oldLead = await this.leadRepository.findOneBy({
+      name,
+      userId,
+    });
+
+    if (oldLead) {
+      throw new BadRequestException('Lead with this name is already exist');
+    }
 
     if (!minBudget && !maxBudget) {
       throw new BadRequestException('Provide min budget or/and max budget');
     }
 
-    const lead = await this.leadRepository.createLead({
+    const lead = await this.leadRepository.create({
+      name,
+      source,
+      minBudget,
+      maxBudget,
+      contact,
       userId,
-      createLeadDto,
+    });
+
+    await lead.save();
+
+    await this.taskRepository.createAllTasks({
+      userId,
+      leadId: lead.id,
+      nextTask,
     });
 
     return lead;
   }
 
-  async deleteLead({
-    userId,
-    leadId,
-  }: {
-    userId: number;
-    leadId: number;
-  }): Promise<void> {
+  async deleteLead(leadId: number): Promise<void> {
     const lead = await this.leadRepository.findOneBy({ id: leadId });
-
-    if (!lead) {
-      throw new BadRequestException('No lead found with that id');
-    }
-
-    if (lead.userId !== userId) {
-      throw new ForbiddenException('Lead is not belongs to current user');
-    }
-
     await lead.remove();
   }
 }

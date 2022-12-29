@@ -1,7 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
 import { CreateLeadDto } from './dto';
-import { LeadSource } from './enums';
 import { LeadEntity } from './lead.entity';
 
 @Injectable()

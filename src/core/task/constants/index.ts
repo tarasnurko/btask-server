@@ -15,6 +15,7 @@ export const TaskTextArr: TaskText[] = [
 
 export enum TaskStatus {
   Inactive = 'inactive',
+  Next = 'next',
   Done = 'done',
   Deleted = 'deleted',
 }

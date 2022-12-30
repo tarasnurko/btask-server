@@ -23,6 +23,8 @@ export class TaskRepository extends Repository<TaskEntity> {
 
       if (i < nextTask) {
         status = TaskStatus.Done;
+      } else if (i === nextTask) {
+        status = TaskStatus.Next;
       } else {
         status = TaskStatus.Inactive;
       }

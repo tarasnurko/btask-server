@@ -5,6 +5,7 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  CreateDateColumn,
 } from 'typeorm';
 import { LeadEntity } from '../lead/lead.entity';
 import { UserEntity } from '../user/user.entity';
@@ -30,6 +31,9 @@ export class TaskEntity extends BaseEntity {
     default: TaskStatus.Inactive,
   })
   status: TaskStatus;
+
+  @CreateDateColumn()
+  createdAt: Date;
 
   @Column()
   userId: number;

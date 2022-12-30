@@ -9,6 +9,7 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards';
+import { ChangeTasksDto } from '../task/dto';
 import { User } from '../user/decorators';
 import { Lead } from './decorators';
 import { CreateLeadDto } from './dto';
@@ -37,5 +38,20 @@ export class LeadController {
   @UseGuards(LeadGuard)
   async deleteLead(@Lead('id') leadId: number) {
     return await this.leadService.deleteLead(leadId);
+  }
+
+  @Get(':leadId/tasks')
+  @UseGuards(LeadGuard)
+  async getLeadTasks(@Lead('id') leadId: number) {
+    return await this.leadService.getLeadTasks(leadId);
+  }
+
+  @Post(':leadId/tasks')
+  @UseGuards(LeadGuard)
+  async changeTasks(
+    @Lead('id') leadId: number,
+    @Body() changeTasksDto: ChangeTasksDto,
+  ) {
+    return await this.leadService.changeTasks({ leadId, changeTasksDto });
   }
 }

@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  ForbiddenException,
-  Injectable,
-} from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 
 import { InjectRepository } from '@nestjs/typeorm';
 import { TaskStatus } from '../task/constants';
@@ -52,7 +48,7 @@ export class LeadService {
       throw new BadRequestException('Provide min budget or/and max budget');
     }
 
-    const lead = await this.leadRepository.create({
+    const lead = this.leadRepository.create({
       name,
       source,
       minBudget,
@@ -95,8 +91,6 @@ export class LeadService {
   }): Promise<TaskEntity[]> {
     const { tasks: tasksStatus } = changeTasksDto;
 
-    console.log(tasksStatus);
-
     this.verifyTasksStatus(tasksStatus);
 
     const tasks = await this.taskRepository.find({
@@ -104,14 +98,10 @@ export class LeadService {
       order: { order: 'ASC' },
     });
 
-    console.table(tasks);
-
     for (const [index, task] of tasks.entries()) {
       task.status = tasksStatus[index];
       await task.save();
     }
-
-    console.table(tasks);
 
     return tasks;
   }

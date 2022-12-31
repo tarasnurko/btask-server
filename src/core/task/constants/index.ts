@@ -19,3 +19,8 @@ export enum TaskStatus {
   Done = 'done',
   Deleted = 'deleted',
 }
+
+export enum TaskChangeStatus {
+  Done = 'done',
+  Deleted = 'deleted',
+}

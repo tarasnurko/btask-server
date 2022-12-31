@@ -10,5 +10,6 @@ import { TaskModule } from '../task/task.module';
   imports: [TypeOrmModule.forFeature([LeadEntity]), TaskModule],
   controllers: [LeadController],
   providers: [LeadService, LeadRepository],
+  exports: [LeadRepository],
 })
 export class LeadModule {}

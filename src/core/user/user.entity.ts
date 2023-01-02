@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { LeadEntity } from '@/core/lead/lead.entity';
 import { TaskEntity } from '../task/task.entity';
+import { ScriptEntity } from '../script/script.entity';
 
 @Entity('user')
 export class UserEntity extends BaseEntity {
@@ -30,4 +31,10 @@ export class UserEntity extends BaseEntity {
     onUpdate: 'CASCADE',
   })
   tasks: TaskEntity[];
+
+  @OneToMany(() => ScriptEntity, (script) => script.user, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  scripts: ScriptEntity[];
 }

@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmAsyncConfig } from './config/typeorm.config';
 import { AuthModule } from './core/auth/auth.module';
 import { LeadModule } from './core/lead/lead.module';
+import { ScriptModule } from './core/script/script.module';
 import { UserModule } from './core/user/user.module';
 
 @Module({
@@ -13,6 +14,7 @@ import { UserModule } from './core/user/user.module';
     AuthModule,
     UserModule,
     LeadModule,
+    ScriptModule,
   ],
   controllers: [],
   providers: [],

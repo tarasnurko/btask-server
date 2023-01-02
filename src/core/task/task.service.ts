@@ -12,10 +12,15 @@ export class TaskService {
     private readonly taskRepository: TaskRepository,
   ) {}
 
-  async getNextTasks(userId: number): Promise<TaskEntity[]> {
-    const tasks = await this.taskRepository.findBy({
-      userId,
-      status: TaskStatus.Next,
+  async getNextTasks(userId: number) {
+    const tasks = await this.taskRepository.find({
+      where: {
+        userId,
+        status: TaskStatus.Next,
+      },
+      relations: {
+        lead: true,
+      },
     });
 
     return tasks;

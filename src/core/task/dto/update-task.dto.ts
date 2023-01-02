@@ -1,12 +1,5 @@
-import {
-  ArrayMaxSize,
-  ArrayMinSize,
-  ArrayNotEmpty,
-  IsArray,
-  IsEnum,
-  IsNotEmpty,
-} from 'class-validator';
-import { TaskChangeStatus, TaskStatus } from '../constants';
+import { IsEnum, IsNotEmpty } from 'class-validator';
+import { TaskChangeStatus } from '../constants';
 
 export class UpdateTaskDto {
   @IsNotEmpty()

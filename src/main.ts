@@ -9,6 +9,8 @@ async function bootstrap() {
     cors: {
       origin: 'https://btask-client.vercel.app',
       credentials: true,
+      methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+      preflightContinue: false,
     },
   });
 

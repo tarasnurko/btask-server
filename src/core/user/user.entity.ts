@@ -5,7 +5,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { LeadEntity } from 'src/core/lead/lead.entity';
+import { LeadEntity } from '../lead/lead.entity';
 import { TaskEntity } from '../task/task.entity';
 import { ScriptEntity } from '../script/script.entity';
 

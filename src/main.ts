@@ -17,12 +17,14 @@ async function bootstrap() {
     // }
   );
 
-  app.enableCors({
-    origin: ['https://btask-client.vercel.app', '*'],
-    credentials: true,
-    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
-    preflightContinue: false,
-  });
+  // app.enableCors({
+  // origin: ['https://btask-client.vercel.app', '*'],
+  // credentials: true,
+  // methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+  // preflightContinue: false,
+  // });
+
+  app.enableCors();
 
   app.use(cookieParser());
 

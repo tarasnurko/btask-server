@@ -1,4 +1,4 @@
-import { UserRepository } from '@/core/user/user.repository';
+import { UserRepository } from 'src/core/user/user.repository';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';

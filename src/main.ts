@@ -10,7 +10,7 @@ async function bootstrap() {
       origin:
         process.env.MODE === 'dev'
           ? 'http://127.0.0.1:3000'
-          : 'https://btask.vercel.app',
+          : 'https://btask-client.vercel.app',
       credentials: true,
     },
   });

@@ -3,10 +3,10 @@ import {
   TypeOrmModuleOptions,
 } from '@nestjs/typeorm';
 
-import { UserEntity } from '@/core/user/user.entity';
-import { LeadEntity } from '@/core/lead/lead.entity';
-import { TaskEntity } from '@/core/task/task.entity';
-import { ScriptEntity } from '@/core/script/script.entity';
+import { UserEntity } from 'src/core/user/user.entity';
+import { LeadEntity } from 'src/core/lead/lead.entity';
+import { TaskEntity } from 'src/core/task/task.entity';
+import { ScriptEntity } from 'src/core/script/script.entity';
 
 const Entities = [UserEntity, LeadEntity, TaskEntity, ScriptEntity];
 

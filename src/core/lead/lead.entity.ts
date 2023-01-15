@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { UserEntity } from '@/core/user/user.entity';
+import { UserEntity } from 'src/core/user/user.entity';
 import { LeadSource } from './enums';
 import { TaskEntity } from '../task/task.entity';
 

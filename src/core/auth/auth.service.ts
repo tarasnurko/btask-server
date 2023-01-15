@@ -8,7 +8,7 @@ import { JwtService } from '@nestjs/jwt';
 
 import * as bcrypt from 'bcrypt';
 
-import { UserRepository } from '@/core/user/user.repository';
+import { UserRepository } from 'src/core/user/user.repository';
 
 import { AuthDto } from './dto';
 

@@ -1,5 +1,4 @@
-import { Controller, Get, Patch, UseGuards } from '@nestjs/common';
-import { Body } from '@nestjs/common/decorators/http/route-params.decorator';
+import { Controller, Get, Patch, UseGuards, Body } from '@nestjs/common';
 
 import { JwtAuthGuard } from '../auth/guards';
 import { User } from '../user/decorators';

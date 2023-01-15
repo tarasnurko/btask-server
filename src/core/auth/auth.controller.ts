@@ -1,16 +1,8 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  Req,
-  Res,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Post, Res, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dto';
 import { JwtAuthGuard } from './guards';
-import { Request, Response } from 'express';
+import { Response } from 'express';
 
 @Controller('auth')
 export class AuthController {
@@ -22,7 +14,10 @@ export class AuthController {
     @Res({ passthrough: true }) res: Response,
   ) {
     const data = await this.authService.signup(authDto);
-    res.cookie('jwt', data.token, { httpOnly: true });
+    res.cookie('jwt', data.token, {
+      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+      httpOnly: true,
+    });
     return data;
   }
 
@@ -32,14 +27,18 @@ export class AuthController {
     @Res({ passthrough: true }) res: Response,
   ) {
     const data = await this.authService.login(authDto);
-    res.cookie('jwt', data.token, { httpOnly: true });
+    res.cookie('jwt', data.token, {
+      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+      httpOnly: true,
+    });
     return data;
   }
 
   @Post('logout')
   @UseGuards(JwtAuthGuard)
   async logout(@Res({ passthrough: true }) res: Response) {
-    res.cookie('jwt', null, { httpOnly: true });
+    res.clearCookie('jwt', { httpOnly: true });
+
     return null;
   }
 }

@@ -34,5 +34,5 @@ export class CreateLeadDto {
 
   @IsNotEmpty()
   @IsString()
-  contact: string;
+  contacts: string;
 }

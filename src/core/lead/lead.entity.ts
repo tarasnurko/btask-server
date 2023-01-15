@@ -30,7 +30,7 @@ export class LeadEntity extends BaseEntity {
   maxBudget: number;
 
   @Column()
-  contact: string;
+  contacts: string;
 
   @Column()
   userId: number;

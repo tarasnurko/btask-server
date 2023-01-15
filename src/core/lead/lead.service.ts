@@ -32,7 +32,7 @@ export class LeadService {
     userId: number;
     createLeadDto: CreateLeadDto;
   }) {
-    const { name, source, nextTask, minBudget, maxBudget, contact } =
+    const { name, source, nextTask, minBudget, maxBudget, contacts } =
       createLeadDto;
 
     const oldLead = await this.leadRepository.findOneBy({
@@ -53,7 +53,7 @@ export class LeadService {
       source,
       minBudget,
       maxBudget,
-      contact,
+      contacts,
       userId,
     });
 

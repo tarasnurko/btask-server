@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, Delete, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Delete,
+  UseGuards,
+  Patch,
+} from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards';
 import { ChangeTasksDto } from '../task/dto';
 import { User } from '../user/decorators';
@@ -37,7 +45,7 @@ export class LeadController {
     return await this.leadService.getLeadTasks(leadId);
   }
 
-  @Post(':leadId/tasks')
+  @Patch(':leadId/tasks')
   @UseGuards(LeadGuard)
   async changeTasks(
     @Lead('id') leadId: number,

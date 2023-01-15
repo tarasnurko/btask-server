@@ -1,4 +1,4 @@
-import { Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Controller, Get, Patch, UseGuards } from '@nestjs/common';
 import { Body } from '@nestjs/common/decorators/http/route-params.decorator';
 
 import { JwtAuthGuard } from '../auth/guards';
@@ -19,7 +19,7 @@ export class TaskController {
     return await this.taskService.getNextTasks(userId);
   }
 
-  @Post(':taskId')
+  @Patch(':taskId')
   @UseGuards(TaskGuard)
   async updateTask(
     @Task() task: TaskEntity,

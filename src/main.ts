@@ -24,7 +24,11 @@ async function bootstrap() {
   // preflightContinue: false,
   // });
 
-  app.enableCors();
+  app.enableCors({
+    origin: true,
+    credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  });
 
   app.use(cookieParser());
 

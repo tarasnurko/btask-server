@@ -7,10 +7,7 @@ import cookieParser from 'cookie-parser';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: {
-      origin:
-        process.env.MODE === 'dev'
-          ? 'http://127.0.0.1:3000'
-          : 'https://btask-client.vercel.app',
+      origin: 'https://btask-client.vercel.app',
       credentials: true,
     },
   });

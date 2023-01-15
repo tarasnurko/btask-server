@@ -9,7 +9,7 @@ export class AnalyticsController {
   constructor(private readonly analyticsService: AnalyticsService) {}
 
   @Get('failure')
-  async getFailuteAnalytics(@User('id') userId: number) {
+  async getFailuteAnalytics(@User('id') userId: number): Promise<any> {
     return await this.analyticsService.getFailuteAnalytics(userId);
   }
 }

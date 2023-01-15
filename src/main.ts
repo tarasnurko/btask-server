@@ -8,8 +8,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: {
       origin: 'https://btask-client.vercel.app',
-      credentials: true,
       methods: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
+      credentials: true,
     },
   });
 

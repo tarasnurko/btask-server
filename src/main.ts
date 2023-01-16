@@ -20,7 +20,7 @@ async function bootstrap() {
 
   app.use((req: Request, res: Response, next: NextFunction) => {
     if (req.method === 'OPTIONS') {
-      return res.status(200).json({});
+      return res.status(200).json({ body: 'OK' });
     }
     next();
   });
